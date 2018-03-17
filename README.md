@@ -32,7 +32,7 @@ Database and RESTFUL API have per user data
 
 Now implements RESTFUL API  
 
-# **
+---
 
 ### How to Create Account
 
