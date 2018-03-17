@@ -17,6 +17,7 @@ The Official ACP Form Based Calculator is located here - https://rusa.org/octime
 
 ### Proj 8:  
 
+Now has cookie support, logout features, and CSRF protection.
 
 ### Proj 7:  
 
@@ -31,7 +32,7 @@ Database and RESTFUL API have per user data
 
 Now implements RESTFUL API  
 
-# &#32
+# **
 
 ### How to Create Account
 
