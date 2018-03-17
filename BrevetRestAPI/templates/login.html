@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>ACP Controle Times</title>
+
+  <!-- 'viewport' is used by bootstrap to respond to device size -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Javascript:  JQuery from a content distribution network (CDN) -->
+  <script
+     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+  </script>
+
+  <!-- Bootstrap includes javascript and css  (must follow jquery) -->
+  <link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+   </script>
+
+  <!-- moment.js is the JavaScript equivalent of arrow.py -->
+  <script 
+    src="{{ url_for('static', filename="js/moment.min.js") }}">
+      
+  </script>
+
+</head>
+
+<body>
+  <form action="/login" method=post>
+    {{ form.csrf_token }}
+      <div>{{ form.username.label }}: {{ form.username() }}</div>
+      <div>{{ form.password.label }}: {{ form.password() }}</div>
+      <div>{{ form.remember.label }}: {{ form.remember() }}</div>
+      <input type=submit value="Login"/>
+  </form>
+  <input type=button value="Register New User" onclick="register_user();" />
+  <div id="log"></div>
+  <script>
+    function register_user() {
+      var username = $("input[name='username']").val();
+      var password = $("input[name='password']").val();
+      $.getJSON("/api/register", {
+        username: username,
+        password: password
+      },
+        function(data) {
+          $("input[name='username']").val("");
+          $("input[name='password']").val("");
+          if (data.result.username == "") {
+            document.getElementById("log").innerHTML = "Username: " + username + " is already in use.  Please try another name.";
+          }
+          document.getElementById("log").innerHTML = "Account Creation Successful. <br/>Log in again with username: " + username + " and your password";
+        }
+      )
+    }
+  </script>
+</body>
+</html>
